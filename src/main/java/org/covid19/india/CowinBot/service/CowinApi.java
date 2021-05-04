@@ -13,7 +13,7 @@ public class CowinApi {
         uri.append("&").append(queryParams("date", date));
 
         HttpHeaders headers = new HttpHeaders();
-        headers.set("accept", "application/json");
+        headers.set("Content-Type", "application/json");
         headers.set("Accept-Language", "hi_IN");
 
 
@@ -41,7 +41,7 @@ public class CowinApi {
         uri.append("&").append(queryParams("date", date));
 
         HttpHeaders headers = new HttpHeaders();
-        headers.set("accept", "application/json");
+        headers.set("Content-Type", "application/json");
         headers.set("Accept-Language", "hi_IN");
 
 
