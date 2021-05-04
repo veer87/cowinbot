@@ -14,13 +14,13 @@ public class CowinBotApplication {
 
 	public static void main(String[] args) {
 
-		/*ApiContextInitializer.init();
+		ApiContextInitializer.init();
 		TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
 		try {
 			telegramBotsApi.registerBot(new Bot());
 		} catch (TelegramApiRequestException e) {
 			e.printStackTrace();
-		}*/
+		}
 
 
 		ResponseEntity<String> responseEntity1 = CowinApi.getCalendarByPin("474001", "01-05-2021");

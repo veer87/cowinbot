@@ -15,7 +15,8 @@ public class CowinApi {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
         headers.set("Accept-Language", "hi_IN");
-
+        headers.set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 " +
+                "(KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36");
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -43,7 +44,8 @@ public class CowinApi {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
         headers.set("Accept-Language", "hi_IN");
-
+        headers.set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 " +
+                "(KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36");
 
         RestTemplate restTemplate = new RestTemplate();
 
