@@ -23,10 +23,10 @@ public class CowinBotApplication {
 		}
 
 
-		ResponseEntity<String> responseEntity1 = CowinApi.getCalendarByPin("474001", "01-05-2021");
+		/*ResponseEntity<String> responseEntity1 = CowinApi.getCalendarByPin("474001", "01-05-2021");
 		ResponseEntity<String> responseEntity2 = CowinApi.getFindByPin("474001", "01-05-2021");
 		System.out.println("----------ResponseE1---"+responseEntity1.getBody()+"\n"+
-							"-------Respe2---- " + responseEntity2.getBody());
+							"-------Respe2---- " + responseEntity2.getBody());*/
 		SpringApplication.run(CowinBotApplication.class, args);
 	}
 
