@@ -21,7 +21,13 @@ public class CowinApi {
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        return restTemplate.exchange(uri.toString(), HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> responseEntity = null;
+        try {
+            responseEntity = restTemplate.exchange(uri.toString(), HttpMethod.GET, entity, String.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return responseEntity;
 
        // System.out.println(response.getBody());
 
@@ -43,10 +49,14 @@ public class CowinApi {
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
         System.out.println(uri.toString() + " headers " + headers.toString());
-        return restTemplate.exchange(uri.toString(), HttpMethod.GET, entity, String.class);
 
-        // System.out.println(response.getBody());
-
+        ResponseEntity<String> responseEntity = null;
+        try {
+            responseEntity = restTemplate.exchange(uri.toString(), HttpMethod.GET, entity, String.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return responseEntity;
     }
 
     private static String queryParams(String fieldName, String val) {
