@@ -1,5 +1,7 @@
 package org.covid19.india.CowinBot.service;
 
+import org.covid19.india.CowinBot.utils.BotUtils;
+import org.covid19.india.CowinBot.utils.CowinApiUtils;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -16,14 +18,43 @@ public class Bot extends TelegramLongPollingBot {
 
     private static String TOKEN = "1634232499:AAFedEHYuq3gUMB_MNESCD5ObXar2OZDzsY";
     private static String USERNAME = "Cowin19bot";
+    private static String HELP = "HELP";
+    private static String SLOTS = "SLOT";
+
+    private static String DEFAULT_MESSAGE = "Sorry, unable to understand.\n" +
+                                                    "for more info type HELP";
+
+
 
 
     @Override
     public void onUpdatesReceived(List<Update> updates) {
         for (Update update : updates) {
             String message = update.getMessage().getText();
-            System.out.println("++ onUpdatesReceived +++ " + update );
-            sendMsg(update.getMessage().getChatId().toString(), message);
+            String[] tokens = message.split(" ");
+
+            String query = tokens[0];
+
+
+            String response = DEFAULT_MESSAGE;
+
+            if (query.equalsIgnoreCase(HELP)) {
+                //TODO return menu card
+                response = BotUtils.getMenuCard();
+            } else if (query.equalsIgnoreCase(SLOTS)) {
+                //TODO call slots query
+                if (BotUtils.isValidParams(tokens)) {
+                    response = CowinApiUtils.callCowinQueryApi(tokens);
+                    if (response == null) {
+                        response = DEFAULT_MESSAGE;
+                        // log the query which is failed
+                    }
+                }
+            }
+
+
+            //System.out.println("++ onUpdatesReceived +++ " + update );
+            sendMsg(update.getMessage().getChatId().toString(), response);
         }
     }
 
