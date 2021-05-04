@@ -22,6 +22,7 @@ public class Bot extends TelegramLongPollingBot {
     public void onUpdatesReceived(List<Update> updates) {
         for (Update update : updates) {
             String message = update.getMessage().getText();
+            System.out.println("++ onUpdatesReceived +++ " + update );
             sendMsg(update.getMessage().getChatId().toString(), message);
         }
     }
