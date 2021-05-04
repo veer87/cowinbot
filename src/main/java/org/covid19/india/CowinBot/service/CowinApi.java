@@ -42,7 +42,7 @@ public class CowinApi {
         RestTemplate restTemplate = new RestTemplate();
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
-
+        System.out.println(uri.toString() + " headers " + headers.toString());
         return restTemplate.exchange(uri.toString(), HttpMethod.GET, entity, String.class);
 
         // System.out.println(response.getBody());

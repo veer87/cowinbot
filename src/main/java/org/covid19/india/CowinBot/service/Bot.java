@@ -8,7 +8,6 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 import java.util.List;
-import java.util.logging.Level;
 
 public class Bot extends TelegramLongPollingBot {
     /**
@@ -19,7 +18,7 @@ public class Bot extends TelegramLongPollingBot {
     private static String TOKEN = "1634232499:AAFedEHYuq3gUMB_MNESCD5ObXar2OZDzsY";
     private static String USERNAME = "Cowin19bot";
     private static String HELP = "HELP";
-    private static String SLOTS = "SLOT";
+    private static String SLOT = "SLOT";
 
     private static String DEFAULT_MESSAGE = "Sorry, unable to understand.\n" +
                                                     "for more info type HELP";
@@ -41,7 +40,7 @@ public class Bot extends TelegramLongPollingBot {
             if (query.equalsIgnoreCase(HELP)) {
                 //TODO return menu card
                 response = BotUtils.getMenuCard();
-            } else if (query.equalsIgnoreCase(SLOTS)) {
+            } else if (query.equalsIgnoreCase(SLOT)) {
                 //TODO call slots query
                 if (BotUtils.isValidParams(tokens)) {
                     response = CowinApiUtils.callCowinQueryApi(tokens);
