@@ -59,6 +59,7 @@ public class CowinApi {
             e.printStackTrace();
         }
         return responseEntity;
+        //
     }
 
     private static String queryParams(String fieldName, String val) {
