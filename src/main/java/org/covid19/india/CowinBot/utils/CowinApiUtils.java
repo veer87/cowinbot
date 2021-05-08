@@ -1,8 +1,8 @@
 package org.covid19.india.CowinBot.utils;
 
 import org.covid19.india.CowinBot.service.CowinApi;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.http.HttpStatus;
@@ -48,10 +48,13 @@ public class CowinApiUtils {
         StringBuilder response = new StringBuilder();
         JSONParser jsonParser = new JSONParser();
 
+        JSONObject jsonObj;
         JSONArray arr;
 
         try {
-            arr = (JSONArray)jsonParser.parse("sessions");
+        	jsonObj = (JSONObject)jsonParser.parse(s);
+        	arr = (JSONArray)jsonObj.get("sessions");
+            
         } catch (ParseException e) {
             //log error
             e.printStackTrace();
@@ -60,8 +63,8 @@ public class CowinApiUtils {
 
 
 
-        for (int i = 0; i < arr.length(); i++) {
-            JSONObject obj = arr.getJSONObject(i);
+        for (int i = 0; i < arr.size(); i++) {
+            JSONObject obj = (JSONObject)arr.get(i);
             addField(obj,response, "center_id");
             addField(obj, response, "name");
             addField(obj, response, "address");
@@ -74,8 +77,8 @@ public class CowinApiUtils {
     }
 
     private static void addField(JSONObject obj, StringBuilder sb, String key) {
-        if (obj.has(key)) {
-            sb.append(key).append(": ").append(obj.get("name")).append("\n");
+        if (obj.containsKey(key)) {
+            sb.append(key).append(": ").append(obj.get(key)).append("\n");
         }
     }
 

@@ -1,5 +1,10 @@
 package org.covid19.india.CowinBot;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.covid19.india.CowinBot.executors.CommandExecutor;
+import org.covid19.india.CowinBot.executors.FetchCentresByLocationCommmandExecutor;
 import org.covid19.india.CowinBot.service.Bot;
 import org.covid19.india.CowinBot.service.CowinApi;
 import org.springframework.boot.SpringApplication;
@@ -12,12 +17,17 @@ import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
 @SpringBootApplication
 public class CowinBotApplication {
 
+	
 	public static void main(String[] args) {
 
 		ApiContextInitializer.init();
 		TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
+		List<CommandExecutor> commandList = new ArrayList<>();
 		try {
-			telegramBotsApi.registerBot(new Bot());
+			
+			CommandExecutor fetchCentresByLocationCommmandExecutor = new FetchCentresByLocationCommmandExecutor();
+			commandList.add(fetchCentresByLocationCommmandExecutor);
+			telegramBotsApi.registerBot(new Bot(commandList));
 		} catch (TelegramApiRequestException e) {
 			e.printStackTrace();
 		}

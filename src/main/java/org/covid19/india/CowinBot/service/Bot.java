@@ -1,5 +1,6 @@
 package org.covid19.india.CowinBot.service;
 
+import org.covid19.india.CowinBot.executors.CommandExecutor;
 import org.covid19.india.CowinBot.utils.BotUtils;
 import org.covid19.india.CowinBot.utils.CowinApiUtils;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
@@ -22,18 +23,23 @@ public class Bot extends TelegramLongPollingBot {
 
     private static String DEFAULT_MESSAGE = "Sorry, unable to understand.\n" +
                                                     "for more info type HELP";
-
-
+    
+    List<CommandExecutor> commandExectorList;
+    
+    public Bot(List<CommandExecutor> commandExectorList) {
+    	this.commandExectorList = commandExectorList;
+    }
 
 
     @Override
     public void onUpdatesReceived(List<Update> updates) {
         for (Update update : updates) {
             String message = update.getMessage().getText();
+            System.out.println(update);
+//            System.out.println(message);
             String[] tokens = message.split(" ");
 
             String query = tokens[0];
-
 
             String response = DEFAULT_MESSAGE;
 
@@ -50,7 +56,12 @@ public class Bot extends TelegramLongPollingBot {
                     }
                 }
             }
-
+            
+            for(CommandExecutor commandExector:commandExectorList) {
+            	if(commandExector.isApplicable(query)) {
+            		response = commandExector.execute(update);
+            	}
+            }
 
             //System.out.println("++ onUpdatesReceived +++ " + update );
             sendMsg(update.getMessage().getChatId().toString(), response);
