@@ -62,6 +62,9 @@ public class Bot extends TelegramLongPollingBot {
             		response = commandExector.execute(update);
             	}
             }
+            
+            if(response.isEmpty())
+            	response = "No slot available near you!!";
 
             //System.out.println("++ onUpdatesReceived +++ " + update );
             sendMsg(update.getMessage().getChatId().toString(), response);

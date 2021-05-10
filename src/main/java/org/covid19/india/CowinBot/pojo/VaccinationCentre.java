@@ -144,7 +144,8 @@ public class VaccinationCentre {
 		return "VaccinationCentre\nname=" + name + "\naddress=" + address + "\nstate_name=" + state_name
 				+ "\ndistrict_name=" + district_name + "\npincode=" + pincode + "\nfrom=" + from + "\nto=" + to
 				+ "\nlatitute=" + latitute + "\nlongitute=" + longitute + "\ndate=" + date + "\navailable_capacity="
-				+ available_capacity + "\nslots=" + slots + "\n--------------------------\n";
+				+ available_capacity + "\nmin_age_limit="
+						+ min_age_limit+ "\nslots=" + slots + "\n--------------------------\n";
 	}
 	
 
