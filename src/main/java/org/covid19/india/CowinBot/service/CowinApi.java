@@ -96,8 +96,14 @@ public class CowinApi {
     	
     	for(District district: districts) {
     		ResponseEntity<VaccinationCentreWrapper> vaccinationCentreWrapperResponse = getAllAvailableVaccinationCentresByDistrictAndDate(district.getDistrictId(),date);
-            
-    		vaccinationCentreList.addAll(vaccinationCentreWrapperResponse.getBody().getSessions());
+            try {
+				Thread.sleep(300);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            if(vaccinationCentreWrapperResponse!=null)
+    		  vaccinationCentreList.addAll(vaccinationCentreWrapperResponse.getBody().getSessions());
             
     	}
     	

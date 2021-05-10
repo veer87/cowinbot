@@ -36,6 +36,9 @@ public class FetchCentresByLocationCommmandExecutor extends CommandExecutor {
         //return top 10 VaccinationCentre
         List<VaccinationCentre> firstNVaccinationCentreList = vaccinationCentreList.stream().limit(5).collect(Collectors.toList());
         
+        if(firstNVaccinationCentreList.size() == 0)
+        	return "";
+        
         return firstNVaccinationCentreList.toString();
 	
 	}
